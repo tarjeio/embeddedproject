@@ -24,7 +24,7 @@ LDFLAGS         := $(FLAGS)
 INC             := -I $(PROJECT_DIR)/inc
 SRC             := $(wildcard $(PROJECT_DIR)/src/*.cc)
 OBJ             := $(SRC:$(PROJECT_DIR)/src/%.cc=$(OUTPUT_DIR)/obj/%.o)
-LIBS		:= -Wl,-L./build/resolvedDep/libmathy/lib -lmathy
+LIBS		:= $(LIBS) -Wl,-L./build/resolvedDep/libmathy/lib/libmathy.a
 
 TEST_EXEC_NAME   = test
 TEST_EXEC_FILE  := $(OUTPUT_DIR)/bin/$(TEST_EXEC_NAME)
