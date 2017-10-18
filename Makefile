@@ -19,7 +19,7 @@ OUTPUT_DIR      := $(shell pwd)/out
 EXEC_NAME        = main
 EXEC_FILE       := $(OUTPUT_DIR)/bin/$(EXEC_NAME)
 FLAGS           := -std=c++11 $(WARNINGS)
-CXXFLAGS        := $(FLAGS) -v
+CXXFLAGS        := $(FLAGS)
 LDFLAGS         := $(FLAGS)
 INC             := -I $(PROJECT_DIR)/inc
 SRC             := $(wildcard $(PROJECT_DIR)/src/*.cc)
