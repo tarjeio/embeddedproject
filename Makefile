@@ -43,23 +43,13 @@ DIR_GUARD		 = mkdir -pv $(@D)
 #-----------------------------------------------------------------------
 
 .PHONY: all
-all: shared_library static_library main test_exe
+all: main test_exe
 
 main: $(EXEC_FILE)
 $(EXEC_FILE): $(OBJ)
 	@$(DIR_GUARD)
 	@$(LD) $(LDFLAGS) $^ -o $@ && echo "[OK]: $@"
 	@$@
-
-static_library: $(OUTPUT_DIR)/lib/libmathy.a
-$(OUTPUT_DIR)/lib/libmathy.a: $(OUTPUT_DIR)/obj/mathy.o
-	@$(DIR_GUARD)
-	@$(AR) $(ARFLAGS) $@ $^ && echo "[OK]: $@"
-
-shared_library: $(OUTPUT_DIR)/lib/libmathy.so
-$(OUTPUT_DIR)/lib/libmathy.so: $(OUTPUT_DIR)/obj/mathy.o
-	@$(DIR_GUARD)
-	@$(CXX) $(LDFLAGS) -shared -o $@ $^ && echo "[OK]: $@"
 
 .PHONY: test
 test: test_exe
