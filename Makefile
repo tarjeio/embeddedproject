@@ -30,7 +30,7 @@ TEST_EXEC_NAME   = test
 TEST_EXEC_FILE  := $(OUTPUT_DIR)/bin/$(TEST_EXEC_NAME)
 FLAGS_TEST      := $(FLAGS)
 CXXFLAGS_TEST   := $(CXXFLAGS)
-LDFLAGS_TEST    := $(LDFLAGS)
+LDFLAGS_TEST    := $(LDFLAGS) $(LIBS)
 INC_TEST        := $(INC) -I $(PROJECT_DIR)/inc
 SRC_TEST        := $(wildcard $(PROJECT_DIR)/tst/*.cc)
 OBJ_TEST        := $(filter-out $(OUTPUT_DIR)/obj/main.o, $(OBJ)) $(SRC_TEST:$(PROJECT_DIR)/tst/%.cc=$(OUTPUT_DIR)/obj/%.o)
@@ -60,7 +60,7 @@ test: test_exe
 test_exe: $(TEST_EXEC_FILE)
 $(TEST_EXEC_FILE): $(OBJ_TEST)
 	@$(DIR_GUARD)
-	@$(LD) $(LDFLAGS_TEST) $^ $(LIBS) -o $@ && echo "[OK]: $@"
+	@$(LD) $(LDFLAGS_TEST) $^ -o $@ && echo "[OK]: $@"
 	@$@
 
 $(OUTPUT_DIR)/obj/%.o: $(PROJECT_DIR)/src/%.cc
